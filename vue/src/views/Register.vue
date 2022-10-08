@@ -2,13 +2,13 @@
     <div>
         <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Register for free
+            {{$t('Register_for_free')}}
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
-            Or
+            {{$t('Or')}}
             {{ ' ' }}
             <router-link :to="{name: 'Login'}" class="font-medium text-indigo-600 hover:text-indigo-500">
-                login to your account
+                {{$t('login_to_your_account')}}
             </router-link>
         </p>
     </div>
@@ -29,22 +29,25 @@
                 <label for="full_name" class="sr-only">Full name</label>
                 <input id="full_name" name="email" type="text" required="" v-model="user.name"
                        class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                       placeholder="Full name" />
+                       :placeholder="$t('placeholders.Full_name')" />
             </div>
             <div>
                 <label for="email-address" class="sr-only">Email address</label>
                 <input id="email-address" name="email" type="email" autocomplete="email" required="" v-model="user.email"
-                       class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address" />
+                       class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                       :placeholder="$t('placeholders.Email_address')" />
             </div>
             <div>
                 <label for="password" class="sr-only">Password</label>
                 <input id="password" name="password" type="password" autocomplete="current-password" required="" v-model="user.password"
-                       class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
+                       class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                       :placeholder="$t('placeholders.Password')" />
             </div>
             <div>
                 <label for="password_confirmation" class="sr-only">Password Confirmation</label>
                 <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="current-password" required="" v-model="user.password_confirmation"
-                       class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password Confirmation" />
+                       class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                       :placeholder="$t('placeholders.Password_Confirmation')" />
             </div>
         </div>
 
@@ -78,18 +81,21 @@
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                 </svg>
-                Sign up
+                {{$t('buttons.Sign_up')}}
             </button>
         </div>
     </form>
+    <LangSwitch />
 </template>
 
 <script setup>
-import { LockClosedIcon } from '@heroicons/vue/solid'
+
+import { LockClosedIcon } from '@heroicons/vue/20/solid'
 import store from "../store";
 import { ref } from "vue";
 import {useRouter} from "vue-router";
 import Alert from "../components/Alert.vue";
+import LangSwitch from "../components/LangSwitch.vue";
 
 const user = {
     name: '',

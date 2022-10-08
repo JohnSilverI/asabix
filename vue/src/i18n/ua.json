@@ -1,0 +1,19 @@
+{
+    "Sign_in_to_your_account": "Авторизуйтеся",
+    "Register_for_free": "Зареєструйте акаунт",
+    "Or": "Або",
+    "register_for_free": "зареєструйтеся",
+    "login_to_your_account": "авторизуйтеся",
+    "placeholders": {
+        "Full_name": "Повне ім'я",
+        "Email_address": "Email адрес",
+        "Password": "Пароль",
+        "Password_Confirmation": "Підтвердження пароля"
+    },
+    "Remember_me": "Запам'ятати мене",
+    "buttons": {
+        "Sign_in": "Авторизуватися",
+        "Sign_up": "Зареєструватися"
+    },
+    "Choose_language":"Оберіть мову"
+}

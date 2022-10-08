@@ -1,0 +1,19 @@
+{
+    "Sign_in_to_your_account": "Sign in to your account",
+    "Register_for_free": "Register for free",
+    "Or": "Or",
+    "register_for_free": "register for free",
+    "login_to_your_account": "login to your account",
+    "placeholders": {
+        "Full_name": "Full name",
+        "Email_address": "Email address",
+        "Password": "Password",
+        "Password_Confirmation": "Password Confirmation"
+    },
+    "Remember_me": "Remember me",
+    "buttons": {
+        "Sign_in": "Sign in",
+        "Sign_up": "Sign up"
+    },
+    "Choose_language":"Choose a language"
+}

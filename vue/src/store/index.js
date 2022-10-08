@@ -1,15 +1,20 @@
 import {createStore} from "vuex";
 import axiosClient from '../axios';
+import {defaultLocale, i18n} from "../i18n";
 
 const store = createStore ({
   state: {
     user: {
       data: sessionStorage.getItem('userData') ? JSON.parse(sessionStorage.getItem('userData')) : {},
       token: sessionStorage.getItem('TOKEN')
-    }
+    },
+    lang: sessionStorage.getItem('lang') ? sessionStorage.getItem('lang') : defaultLocale
   },
   getters: {},
   actions: {
+    init(){
+        i18n.global.locale.value =  this.state.lang
+    },
     register({commit}, user) {
       return axiosClient.post('/register',user)
         .then(({data}) => {
@@ -31,6 +36,9 @@ const store = createStore ({
           commit('logout')
           return response;
         })
+    },
+    languageChange({commit}, lang){
+        commit('setLang', lang)
     }
 
   },
@@ -46,6 +54,10 @@ const store = createStore ({
       state.user.data = userData.user;
       sessionStorage.setItem('userData', JSON.stringify(userData.user));
       sessionStorage.setItem('TOKEN', userData.token);
+    },
+    setLang: (state, lang) => {
+        sessionStorage.setItem('lang', lang);
+        i18n.global.locale.value = lang
     }
   },
   modules: {}

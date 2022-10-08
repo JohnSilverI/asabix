@@ -2,13 +2,13 @@
     <div>
         <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow"/>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+            {{$t('Sign_in_to_your_account')}}
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
-            Or
+            {{$t('Or')}}
             {{ ' ' }}
             <router-link :to="{name: 'Register'}" class="font-medium text-indigo-600 hover:text-indigo-500">
-                register for free
+                {{$t('register_for_free')}}
             </router-link>
         </p>
     </div>
@@ -38,13 +38,13 @@
                 <label for="email-address" class="sr-only">Email address</label>
                 <input id="email-address" name="email" type="email" autocomplete="email" required="" v-model="user.email"
                        class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                       placeholder="Email address"/>
+                       :placeholder="$t('placeholders.Email_address')"/>
             </div>
             <div>
                 <label for="password" class="sr-only">Password</label>
                 <input id="password" name="password" type="password" autocomplete="current-password" required="" v-model="user.password"
                        class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                       placeholder="Password"/>
+                       :placeholder="$t('placeholders.Password')"/>
             </div>
         </div>
 
@@ -53,7 +53,7 @@
                 <input id="remember-me" name="remember-me" type="checkbox" v-model="user.remember"
                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"/>
                 <label for="remember-me" class="ml-2 block text-sm text-gray-900">
-                    Remember me
+                    {{$t('Remember_me')}}
                 </label>
             </div>
         </div>
@@ -88,18 +88,20 @@
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                 </svg>
-                Sign in
+                {{$t('buttons.Sign_in')}}
             </button>
         </div>
     </form>
+    <LangSwitch />
 </template>
 
 <script setup>
-import { LockClosedIcon } from '@heroicons/vue/solid'
+import { LockClosedIcon } from '@heroicons/vue/20/solid'
 import store from "../store";
 import {useRouter} from "vue-router";
 import {ref} from "vue";
 import Alert from "../components/Alert.vue";
+import LangSwitch from "../components/LangSwitch.vue";
 
 const router = useRouter();
 const user = {
