@@ -8,6 +8,9 @@ import Register from "../views/Register.vue";
 
 import DefaultLayout from "../components/DefaultLayout.vue";
 import Dashboard from "../views/Dashboard.vue";
+import Tags from "../views/Tags.vue";
+import Posts from "../views/Posts.vue";
+import TagView from "../views/TagView.vue";
 
 
 const routes = [
@@ -18,6 +21,10 @@ const routes = [
     meta: {requiresAuth: true},
     children: [
       {path: '/dashboard', name: 'Dashboard', component: Dashboard},
+      {path: '/tags', name: 'Tags', component: Tags},
+      {path: '/tags/create', name: 'TagCreate', component: TagView},
+      {path: '/posts', name: 'Posts', component: Posts},
+      {path: '/tags/:id', name: 'TagView', component: TagView},
     ]
   },
   {

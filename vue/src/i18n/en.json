@@ -13,7 +13,24 @@
     "Remember_me": "Remember me",
     "buttons": {
         "Sign_in": "Sign in",
-        "Sign_up": "Sign up"
+        "Sign_up": "Sign up",
+        "Delete_tag": "Delete Tag",
+        "Save": "Save"
     },
-    "Choose_language":"Choose a language"
+    "fields": {
+        "Name": "Name"
+    },
+    "Choose_language":"Choose a language",
+    "Sign_Out": "Sign Out",
+    "Dashboard": "Dashboard",
+    "Tags": "Tags",
+    "Posts": "Posts",
+    "Add_new_Tag": "Add new Tag",
+    "Loading...": "Loading...",
+    "Your_not_have_Tags_yet": "Your don't have surveys yet",
+    "Tag_updated": "Tag was successfully updated",
+    "Tag_created": "Tag was successfully created",
+    "Edit_Tag": "Edit tag",
+    "Create_tag": "Create a tag",
+    "Delete_tag": "Are you sure you want to delete this tag?"
 }

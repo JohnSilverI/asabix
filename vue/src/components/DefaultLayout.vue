@@ -64,7 +64,7 @@
                   <MenuItems class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <MenuItem>
                       <a @click="logout" class="block px-4 py-2 text-sm text-gray-700 hover:cursor-pointer">
-                        Sign Out
+                          {{$t('Sign_Out')}}
                       </a>
                     </MenuItem>
                   </MenuItems>
@@ -115,7 +115,7 @@
           <div class="mt-3 px-2 space-y-1">
             <DisclosureButton as="a" @click="logout" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
             >
-              Sign Out
+              {{$t('Sign_Out')}}
             </DisclosureButton>
           </div>
         </div>
@@ -123,6 +123,7 @@
     </Disclosure>
 
     <router-view></router-view>
+    <Notification />
   </div>
 </template>
 
@@ -132,10 +133,8 @@ import { BellIcon, Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 import { useStore } from 'vuex'
 import { computed } from 'vue'
 import {useRouter} from "vue-router";
-
-const navigation = [
-  { name: 'Dashboard', to: {name: "Dashboard"} },
-]
+import { useI18n } from 'vue-i18n';
+import Notification from "./Notification.vue";
 
 export default {
   components: {
@@ -149,10 +148,18 @@ export default {
     BellIcon,
     Bars3Icon,
     XMarkIcon,
+    Notification
   },
   setup() {
     const store = useStore();
     const router = useRouter();
+    const { t } = useI18n({ useScope: 'global' });
+
+    const navigation = [
+          { name: t('Dashboard'), to: {name: "Dashboard"} },
+          { name: t('Tags'), to: {name: "Tags"} },
+          { name: t('Posts'), to: {name: "Posts"} },
+    ]
 
     function logout() {
       store.dispatch('logout')

@@ -1,6 +1,6 @@
 <template>
   <PageComponent
-    title="Dashboard"
+    :title="$t('Dashboard')"
   >
     Content goes here
   </PageComponent>

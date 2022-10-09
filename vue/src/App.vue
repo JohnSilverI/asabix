@@ -1,6 +1,7 @@
 <script setup>
 import store from './store';
-import { useI18n } from 'vue-i18n';
+import {useI18n} from 'vue-i18n';
+
 const {t} = useI18n({useScope: 'global'})
 store.dispatch('init');
 </script>
