@@ -50,9 +50,9 @@ class AuthController extends Controller
 
         if (!Auth::attempt($credentials, $remember)) {
             return response([
-                'message' => 'The Provided credentials are not correct',
+                'message' => __('errors.credentials_not_correct'),
                 'errors' => [
-                    'email' => ['The Provided credentials are not correct'],
+                    'email' => [__('errors.credentials_not_correct')],
                     'password' => [],
                     ]
             ], 422);

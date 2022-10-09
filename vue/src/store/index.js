@@ -56,8 +56,9 @@ const store = createStore ({
       sessionStorage.setItem('TOKEN', userData.token);
     },
     setLang: (state, lang) => {
+        state.lang = lang;
         sessionStorage.setItem('lang', lang);
-        i18n.global.locale.value = lang
+        i18n.global.locale.value = lang;
     }
   },
   modules: {}
