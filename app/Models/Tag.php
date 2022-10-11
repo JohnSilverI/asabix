@@ -11,4 +11,8 @@ class Tag extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name'];
+
+    public function post_tags(){
+        return $this->hasMany('App\Models\PostTags', 'id', 'tag_id')->withTrashed();
+    }
 }

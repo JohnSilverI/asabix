@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class PostTags extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
+    protected $fillable = [
+        'post_id',
+        'tag_id'
+    ];
 
     public function post()
     : \Illuminate\Database\Eloquent\Relations\BelongsTo

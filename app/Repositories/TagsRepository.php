@@ -23,9 +23,15 @@ class TagsRepository extends CoreRepository
     public function getAllWithPaginate($perPage = null)
     : AnonymousResourceCollection
     {
-        $columns = ['id', 'name', 'created_at', 'updated_at', 'deleted_at'];
+        $columns = ['id', 'name', 'created_at', 'updated_at'];
 
-        return TagResource::collection($this->newConditions()->select($columns)->paginate($perPage));
+        return TagResource::collection($this->newConditions()->select($columns)->whereNull('deleted_at')->paginate($perPage));
+    }
+
+    public function getAllForSelectbox()
+    {
+        $columns = ['id', 'name'];
+        return $this->newConditions()->select($columns)->toBase()->get();
     }
 
     /**

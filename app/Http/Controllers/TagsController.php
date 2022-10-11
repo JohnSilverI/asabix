@@ -93,4 +93,16 @@ class TagsController extends Controller
 
         return response('', 204);
     }
+
+    /**
+     * Get tags for selectbox
+     *
+     * @param TagsRepository $tagsRepository
+     *
+     * @return mixed
+     */
+    public function getTagsforSelectbox(TagsRepository $tagsRepository)
+    {
+        return $tagsRepository->getAllForSelectbox();
+    }
 }
