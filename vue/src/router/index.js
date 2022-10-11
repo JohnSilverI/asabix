@@ -11,6 +11,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Tags from "../views/Tags.vue";
 import Posts from "../views/Posts.vue";
 import TagView from "../views/TagView.vue";
+import PostView from "../views/PostView.vue";
 
 
 const routes = [
@@ -23,8 +24,10 @@ const routes = [
       {path: '/dashboard', name: 'Dashboard', component: Dashboard},
       {path: '/tags', name: 'Tags', component: Tags},
       {path: '/tags/create', name: 'TagCreate', component: TagView},
-      {path: '/posts', name: 'Posts', component: Posts},
       {path: '/tags/:id', name: 'TagView', component: TagView},
+      {path: '/posts', name: 'Posts', component: Posts},
+      {path: '/posts/create', name: 'PostCreate', component: PostView},
+      {path: '/posts/:id', name: 'PostView', component: PostView},
     ]
   },
   {

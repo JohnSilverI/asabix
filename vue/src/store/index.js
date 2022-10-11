@@ -14,7 +14,20 @@ const store = createStore ({
       links: [],
       data: []
     },
+    posts: {
+      loading: false,
+      links: [],
+      data: []
+    },
     currentTag: {
+      loading: false,
+      data: {}
+    },
+    currentPost: {
+      loading: false,
+      data: {}
+    },
+    tagsForSelectbox:{
       loading: false,
       data: {}
     },
@@ -27,7 +40,7 @@ const store = createStore ({
   getters: {},
   actions: {
     init(){
-        i18n.global.locale.value =  this.state.lang
+      i18n.global.locale.value =  this.state.lang
     },
     register({commit}, user) {
       return axiosClient.post('/register',user)
@@ -52,7 +65,7 @@ const store = createStore ({
         })
     },
     languageChange({commit}, lang){
-        commit('setLang', lang)
+      commit('setLang', lang)
     },
     getTags({commit}, {url = null} = {}){
       commit("setTagsLoading", true);
@@ -98,6 +111,64 @@ const store = createStore ({
     },
     deleteTag({commit}, id){
       return axiosClient.delete(`/tag/${id}`);
+    },
+    getTagsForSelectbox({commit}) {
+      commit("setTagsforSelectboxLoading", true);
+      return axiosClient
+        .get('/tags_for_selectbox')
+        .then(res => {
+          commit("setTagsforSelectbox", res);
+          commit("setTagsforSelectboxLoading", false);
+          return res;
+        })
+    },
+    savePost({commit}, post){
+      let response;
+      if (post.post_id) {
+        response = axiosClient
+          .put(`/post/${post.post_id}`, post)
+          .then((res) => {
+            console.log('edit',res)
+            commit("setCurrentPost", res.data);
+
+            return res;
+          });
+      }
+      else {
+        response = axiosClient.post("/post", post).then((res) => {
+          commit("setCurrentPost", res.data);
+
+          return res;
+        });
+      }
+      return response;
+    },
+    getPosts({commit}, {url = null} = {}){
+      commit("setPostsLoading", true);
+      url = url || "/post";
+      return axiosClient.get(url)
+        .then((res) => {
+          commit("setPostsLoading", false);
+          commit("setPosts", res.data);
+          return res;
+        })
+    },
+    getPost( {commit}, id) {
+      commit("setCurrentPostLoading", true);
+      return axiosClient
+        .get(`/post/${id}`)
+        .then((res) => {
+          commit("setCurrentPost", res.data);
+          commit("setCurrentPostLoading", false);
+          return res;
+        })
+        .catch((err) => {
+          commit("setCurrentPostLoading", false);
+          throw err;
+        });
+    },
+    deletePost({commit}, id){
+      return axiosClient.delete(`/post/${id}`);
     }
 
   },
@@ -115,22 +186,41 @@ const store = createStore ({
       sessionStorage.setItem('TOKEN', userData.token);
     },
     setLang: (state, lang) => {
-        state.lang = lang;
-        sessionStorage.setItem('lang', lang);
-        i18n.global.locale.value = lang;
+      state.lang = lang;
+      sessionStorage.setItem('lang', lang);
+      i18n.global.locale.value = lang;
     },
     setTagsLoading: (state, loading) => {
       state.tags.loading = loading;
+    },
+    setPostsLoading: (state, loading) => {
+      state.posts.loading = loading;
     },
     setTags: (state, tags) => {
       state.tags.links = tags.meta.links;
       state.tags.data = tags.data;
     },
+    setPosts: (state, posts) => {
+      state.posts.links = posts.meta.links;
+      state.posts.data = posts.data;
+    },
     setCurrentTagLoading: (state, loading) => {
       state.currentTag.loading = loading;
     },
+    setCurrentPostLoading: (state, loading) => {
+      state.currentPost.loading = loading;
+    },
     setCurrentTag: (state, tag) => {
       state.currentTag.data = tag.data;
+    },
+    setCurrentPost: (state, post) => {
+      state.currentPost.data = post;
+    },
+    setTagsforSelectboxLoading:(state, type) => {
+      state.tagsForSelectbox.loading = type;
+    },
+    setTagsforSelectbox:(state, tags) => {
+      state.tagsForSelectbox.data = tags.data;
     },
     notify: (state, {message, type}) => {
       state.notification.show = true;
